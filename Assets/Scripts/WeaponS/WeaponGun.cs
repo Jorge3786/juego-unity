@@ -3,37 +3,65 @@ using UnityEngine.InputSystem;
 
 public class WeaponGun : MonoBehaviour
 {
-    public GameObject projectilePrefab; // Prefab del proyectil
-    public Transform firePoint;         // Donde se instancia el proyectil
-    public float shootForce = 20f;      // Fuerza del proyectil si tiene Rigidbody
+    [Header("References")]
+    [SerializeField] private GameObject gunObject;
+    [SerializeField] private GameObject projectilePrefab;
+    [SerializeField] private Transform firePoint;
+
+    [Header("Settings")]
+    [SerializeField] private float shootForce = 20f;
+    [SerializeField] private float fireRate = 0.2f;          // Min seconds between shots
+    [SerializeField] private float projectileLifetime = 5f;  // Auto-destroy after N seconds
+
+    private InputAction _shootAction;
+    private float _nextFireTime;
+
+    void Awake()
+    {
+        // Defines the action programmatically — swap for an InputActionAsset if preferred
+        _shootAction = new InputAction("Shoot", binding: "<Mouse>/leftButton");
+        _shootAction.Enable();
+    }
+
+    void OnDestroy()
+    {
+        _shootAction.Disable();
+        _shootAction.Dispose();
+    }
 
     void Update()
     {
-        // Verifica que el mouse esté disponible
-        if (Mouse.current == null) return;
-
-        // Botón izquierdo del mouse para disparar
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        if (_shootAction.WasPressedThisFrame())
         {
-            Shoot();
+            TryShoot();
         }
     }
 
+    void TryShoot()
+{
+    if (Time.time < _nextFireTime) return;
+
+    // No dispara si la pistola no está activa
+    if (gunObject != null && !gunObject.activeInHierarchy) return;
+
+    if (projectilePrefab == null || firePoint == null)
+    {
+        Debug.LogWarning("[WeaponGun] Missing projectilePrefab or firePoint reference.", this);
+        return;
+    }
+
+    Shoot();
+    _nextFireTime = Time.time + fireRate;
+}
+
     void Shoot()
     {
-        if (projectilePrefab == null || firePoint == null) return;
-
         GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+        Destroy(projectile, projectileLifetime);  // Prevent memory leak
 
-        // Aplica fuerza si tiene Rigidbody
-        Rigidbody rb = projectile.GetComponent<Rigidbody>();
-        if (rb != null)
+        if (projectile.TryGetComponent(out Rigidbody rb))
         {
             rb.AddForce(firePoint.forward * shootForce, ForceMode.Impulse);
         }
-
-        // Si quieres usar partículas en vez de Rigidbody, simplemente
-        // asegúrate de que projectilePrefab tenga un ParticleSystem
-        // y no necesita Rigidbody ni fuerza.
     }
 }
