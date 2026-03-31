@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3afb067a6af08604bbfdce6285fe64e3, type: 3}
   m_Name: Hands
   m_EditorClassIdentifier: Assembly-CSharp::WeaponItem
-  weaponName: 
+  weaponName: Pistola
   icon: {fileID: 0}

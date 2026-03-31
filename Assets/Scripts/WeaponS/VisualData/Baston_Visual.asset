@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 448870d4959cf494fbecd37bfdc1a154, type: 3}
-  m_Name: Pistol_VisualData
+  m_Name: Baston_Visual
   m_EditorClassIdentifier: Assembly-CSharp::WeaponVisualData
-  impactColorStart: {r: 1, g: 0.6, b: 0.1, a: 1}
-  impactColorEnd: {r: 1, g: 0.2, b: 0, a: 1}
-  impactSize: 1
-  impactLifetime: 0.35
-  impactSpeedMin: 3
-  impactSpeedMax: 7
+  impactColorStart: {r: 0.23584908, g: 0.6746139, b: 1, a: 1}
+  impactColorEnd: {r: 0, g: 0.59260106, b: 1, a: 1}
+  impactSize: 3
+  impactLifetime: 1
+  impactSpeedMin: 2
+  impactSpeedMax: 6
   impactFadeOut: 1
   impactGrowsOverTime: 0
-  impactFinalSize: 0.1
-  impactParticleCount: 60
+  impactFinalSize: 10
+  impactParticleCount: 1
   use3DMesh: 1
   impactMesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
   impactSprite: {fileID: 0}
@@ -30,8 +30,8 @@ MonoBehaviour:
   recoilRotation: 5
   recoilSpeed: 10
   returnSpeed: 6
-  trailColor: {r: 1, g: 0.5, b: 0, a: 1}
-  trailTime: 0.06
-  bulletMaterial: {fileID: 2100000, guid: c3764786eac34714eb7cc94cd48beb58, type: 2}
-  trailMaterial: {fileID: 2100000, guid: c3764786eac34714eb7cc94cd48beb58, type: 2}
-  impactMeshMaterial: {fileID: 2100000, guid: c3764786eac34714eb7cc94cd48beb58, type: 2}
+  trailColor: {r: 0, g: 1, b: 0.934073, a: 1}
+  trailTime: 0.15
+  bulletMaterial: {fileID: 0}
+  trailMaterial: {fileID: 0}
+  impactMeshMaterial: {fileID: 0}

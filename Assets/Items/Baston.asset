@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3afb067a6af08604bbfdce6285fe64e3, type: 3}
-  m_Name: Pistol
+  m_Name: Baston
   m_EditorClassIdentifier: Assembly-CSharp::WeaponItem
-  weaponName: Pistola
+  weaponName: Baston
   icon: {fileID: 0}

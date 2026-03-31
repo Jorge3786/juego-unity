@@ -53,20 +53,20 @@ public class WeaponGun : MonoBehaviour
     }
 
     void TryShoot()
-    {
-        if (Time.time < _nextFireTime) return;
-
-        if (gunObject != null && !gunObject.activeInHierarchy) return;
-
-        if (projectilePrefab == null || firePoint == null)
         {
-            Debug.LogWarning("[WeaponGun] Missing projectilePrefab or firePoint reference.", this);
-            return;
-        }
+            if (Time.time < _nextFireTime) return;
 
-        Shoot();
-        _nextFireTime = Time.time + fireRate;
-    }
+            if (!gameObject.activeInHierarchy) return; // <-- comprueba el propio GameObject
+
+            if (projectilePrefab == null || firePoint == null)
+            {
+                Debug.LogWarning("[WeaponGun] Missing projectilePrefab or firePoint reference.", this);
+                return;
+            }
+
+            Shoot();
+            _nextFireTime = Time.time + fireRate;
+        }
 
     void Shoot()
     {
