@@ -15,13 +15,16 @@ public class ProjectileBullet : MonoBehaviour
             Debug.Log("[ProjectileBullet] TrailRenderer encontrado: " + trail.gameObject.name);
 
         if (trail != null && visualData != null)
-        {
-            trail.startColor = visualData.trailColor;
-            trail.endColor   = new Color(visualData.trailColor.r,
-                                         visualData.trailColor.g,
-                                         visualData.trailColor.b, 1f);
-            trail.time       = visualData.trailTime;
-        }
+            {
+                if (visualData.trailMaterial != null)
+                    trail.material   = visualData.trailMaterial;
+
+                trail.startColor = visualData.trailColor;
+                trail.endColor   = new Color(visualData.trailColor.r,
+                                            visualData.trailColor.g,
+                                            visualData.trailColor.b, 1f);
+                trail.time       = visualData.trailTime;
+            }
     }
 
     void OnCollisionEnter(Collision collision)
@@ -53,8 +56,9 @@ public class ProjectileBullet : MonoBehaviour
             psr.mesh           = visualData.impactMesh != null
                 ? visualData.impactMesh
                 : Resources.GetBuiltinResource<Mesh>("Sphere.fbx");
-            psr.material       = new Material(Shader.Find("Standard"));
-            psr.material.color = visualData.impactColorStart;
+            psr.material = visualData.impactMeshMaterial != null
+                ? visualData.impactMeshMaterial
+                : new Material(Shader.Find("Standard"));
         }
         else
         {
