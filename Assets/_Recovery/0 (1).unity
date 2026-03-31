@@ -323,7 +323,7 @@ GameObject:
   - component: {fileID: 281211996}
   - component: {fileID: 281211995}
   - component: {fileID: 281211994}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bala
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -339,7 +339,7 @@ Transform:
   m_GameObject: {fileID: 281211992}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.975, z: 0.0000000055879}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0000000055879}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -438,7 +438,7 @@ GameObject:
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
   - component: {fileID: 330585548}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -486,7 +486,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 75.7
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -880,12 +880,12 @@ GameObject:
   m_Component:
   - component: {fileID: 925790808}
   - component: {fileID: 925790807}
-  - component: {fileID: 925790810}
   - component: {fileID: 925790806}
   - component: {fileID: 925790805}
-  - component: {fileID: 925790804}
   - component: {fileID: 925790809}
-  m_Layer: 0
+  - component: {fileID: 925790804}
+  - component: {fileID: 925790810}
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1107,13 +1107,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3355418944440326445, guid: 83843a27684454f498fddfadc876045f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 38279748875142232, guid: 83843a27684454f498fddfadc876045f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 83843a27684454f498fddfadc876045f, type: 3}
       propertyPath: m_Name
       value: Pistola
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 83843a27684454f498fddfadc876045f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 83843a27684454f498fddfadc876045f, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1672473800666126947, guid: 83843a27684454f498fddfadc876045f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2056814583881692097, guid: 83843a27684454f498fddfadc876045f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6178220964678725460, guid: 83843a27684454f498fddfadc876045f, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1144,7 +1168,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1090807116}
   - component: {fileID: 1090807115}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: trailRenderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1595,7 +1619,7 @@ GameObject:
   - component: {fileID: 1455704481}
   - component: {fileID: 1455704483}
   - component: {fileID: 1455704482}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BulletPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1631,7 +1655,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87e2567d29c612b4cacb623b03e96280, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileBullet
-  trail: {fileID: 1090807115}
+  visualData: {fileID: 11400000, guid: 905b9932be2f2cd4682c637ac2e16425, type: 2}
 --- !u!135 &1455704482
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1802,7 +1826,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1529319787}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1818,7 +1842,7 @@ Transform:
   m_GameObject: {fileID: 1529319786}
   serializedVersion: 2
   m_LocalRotation: {x: 0.05223828, y: 0.06096494, z: 0.0031950334, w: 0.9967669}
-  m_LocalPosition: {x: 0.36, y: 1.55, z: 3.09}
+  m_LocalPosition: {x: 0.33, y: 1.98, z: 2.88}
   m_LocalScale: {x: 16.666666, y: 16.666666, z: 25}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2016,7 +2040,7 @@ GameObject:
   - component: {fileID: 2116274547}
   - component: {fileID: 2116274546}
   - component: {fileID: 2116274545}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Manos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
