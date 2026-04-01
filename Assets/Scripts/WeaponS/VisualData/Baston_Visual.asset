@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponVisualData
   impactColorStart: {r: 0.23584908, g: 0.6746139, b: 1, a: 1}
   impactColorEnd: {r: 0, g: 0.59260106, b: 1, a: 1}
-  impactSize: 3
+  impactSize: 2
   impactLifetime: 1
   impactSpeedMin: 2
   impactSpeedMax: 6
   impactFadeOut: 1
-  impactGrowsOverTime: 0
+  impactGrowsOverTime: 1
   impactFinalSize: 10
   impactParticleCount: 1
   use3DMesh: 1
@@ -32,6 +32,6 @@ MonoBehaviour:
   returnSpeed: 6
   trailColor: {r: 0, g: 1, b: 0.934073, a: 1}
   trailTime: 0.15
-  bulletMaterial: {fileID: 0}
-  trailMaterial: {fileID: 0}
-  impactMeshMaterial: {fileID: 0}
+  bulletMaterial: {fileID: 2100000, guid: 01487bea15449ad48970a8497047a3f4, type: 2}
+  trailMaterial: {fileID: 2100000, guid: 01487bea15449ad48970a8497047a3f4, type: 2}
+  impactMeshMaterial: {fileID: 2100000, guid: 01487bea15449ad48970a8497047a3f4, type: 2}
