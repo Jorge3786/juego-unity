@@ -6,6 +6,11 @@ public class WeaponInventory : MonoBehaviour
     public WeaponSlot[] slots;
     public int activeSlot = 0;
 
+
+    void Start()
+    {
+        SetActiveSlot(activeSlot);
+    }
     void Update()
     {
         if (Keyboard.current == null) return;

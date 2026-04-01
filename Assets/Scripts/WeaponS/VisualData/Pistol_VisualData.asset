@@ -14,17 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponVisualData
   impactColorStart: {r: 1, g: 0.6, b: 0.1, a: 1}
   impactColorEnd: {r: 1, g: 0.2, b: 0, a: 1}
-  impactSize: 1
+  impactSize: 0.2
   impactLifetime: 0.35
-  impactSpeedMin: 3
-  impactSpeedMax: 7
+  impactSpeedMin: 0.2
+  impactSpeedMax: 1
   impactFadeOut: 1
-  impactGrowsOverTime: 0
-  impactFinalSize: 0.1
-  impactParticleCount: 60
+  impactGrowsOverTime: 1
+  impactFinalSize: 1
+  impactParticleCount: 10
   use3DMesh: 1
   impactMesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
   impactSprite: {fileID: 0}
+  rayFadeDuration: 0.3
+  rayWidth: 0.02
   hasBulletDrop: 0
   recoilDistance: 0.05
   recoilRotation: 5
@@ -35,3 +37,8 @@ MonoBehaviour:
   bulletMaterial: {fileID: 2100000, guid: c3764786eac34714eb7cc94cd48beb58, type: 2}
   trailMaterial: {fileID: 2100000, guid: c3764786eac34714eb7cc94cd48beb58, type: 2}
   impactMeshMaterial: {fileID: 2100000, guid: c3764786eac34714eb7cc94cd48beb58, type: 2}
+  fireMode: 0
+  raycastRange: 100
+  raycastMask:
+    serializedVersion: 2
+    m_Bits: 4294967295

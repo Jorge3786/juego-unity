@@ -220,7 +220,7 @@ Transform:
   m_GameObject: {fileID: 69697825}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -4.0492706, y: -1.86339, z: -0.54714}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -471,7 +471,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 282874548}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Edificios
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1310,8 +1310,8 @@ Transform:
   m_GameObject: {fileID: 914630241}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.109, z: 0}
-  m_LocalScale: {x: 0.1, y: 1, z: 0.1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1357344518}
@@ -1323,7 +1323,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 914630241}
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &914630244
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1768,10 +1768,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fa3e17fe14a6b3499f6ee6fec9d0d9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponGun
-  gunObject: {fileID: 1174999705}
   projectilePrefab: {fileID: 1455704477}
   firePoint: {fileID: 1529319787}
   gunVisual: {fileID: 1024660394}
+  rayPoint: {fileID: 0}
   shootForce: 40
   fireRate: 0.2
   projectileLifetime: 5
@@ -1788,7 +1788,7 @@ GameObject:
   - component: {fileID: 1216494248}
   - component: {fileID: 1216494247}
   - component: {fileID: 1216494246}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Edificio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2042,7 +2042,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -2060,6 +2060,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileBullet
   visualData: {fileID: 11400000, guid: 367fdbb79466bd445b949b1bf02a2b51, type: 2}
+  ignoreCollisionTime: 0.1
 --- !u!1 &1398884222 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5e65a20e11c8591418d712fbfc48cb74, type: 3}
@@ -2082,10 +2083,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fa3e17fe14a6b3499f6ee6fec9d0d9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponGun
-  gunObject: {fileID: 1398884222}
   projectilePrefab: {fileID: 1357344517}
   firePoint: {fileID: 361854302}
   gunVisual: {fileID: 1398884223}
+  rayPoint: {fileID: 1723820908}
   shootForce: 20
   fireRate: 0.2
   projectileLifetime: 5
@@ -2228,6 +2229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileBullet
   visualData: {fileID: 11400000, guid: 905b9932be2f2cd4682c637ac2e16425, type: 2}
+  ignoreCollisionTime: 0.1
 --- !u!135 &1455704482
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2519,7 +2521,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1561340223}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Edificio_type1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2595,6 +2597,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SlotUI
   icon: {fileID: 53360304}
   highlight: {fileID: 919132149155446097, guid: 83843a27684454f498fddfadc876045f, type: 3}
+--- !u!1 &1723820907
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1723820908}
+  m_Layer: 6
+  m_Name: RayPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1723820908
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1723820907}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.09, y: 19.38, z: 0.27}
+  m_LocalScale: {x: 16.666664, y: 16.666664, z: 25}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1398884223}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1754701376
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2605,7 +2638,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 5e65a20e11c8591418d712fbfc48cb74, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.2
+      value: 0.18
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5e65a20e11c8591418d712fbfc48cb74, type: 3}
       propertyPath: m_LocalScale.y
@@ -2667,6 +2700,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5e65a20e11c8591418d712fbfc48cb74, type: 3}
       insertIndex: -1
       addedObject: {fileID: 361854302}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5e65a20e11c8591418d712fbfc48cb74, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1723820908}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5e65a20e11c8591418d712fbfc48cb74, type: 3}
       insertIndex: -1
@@ -2814,7 +2850,7 @@ GameObject:
   - component: {fileID: 1912315242}
   - component: {fileID: 1912315241}
   - component: {fileID: 1912315240}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Edificio (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

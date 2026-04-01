@@ -25,13 +25,20 @@ MonoBehaviour:
   use3DMesh: 1
   impactMesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
   impactSprite: {fileID: 0}
-  hasBulletDrop: 0
+  rayFadeDuration: 0.3
+  rayWidth: 0.02
+  hasBulletDrop: 1
   recoilDistance: 0.05
   recoilRotation: 5
   recoilSpeed: 10
   returnSpeed: 6
   trailColor: {r: 0, g: 1, b: 0.934073, a: 1}
-  trailTime: 0.15
+  trailTime: 0.3
   bulletMaterial: {fileID: 2100000, guid: 01487bea15449ad48970a8497047a3f4, type: 2}
   trailMaterial: {fileID: 2100000, guid: 01487bea15449ad48970a8497047a3f4, type: 2}
   impactMeshMaterial: {fileID: 2100000, guid: 01487bea15449ad48970a8497047a3f4, type: 2}
+  fireMode: 1
+  raycastRange: 100
+  raycastMask:
+    serializedVersion: 2
+    m_Bits: 4294967295

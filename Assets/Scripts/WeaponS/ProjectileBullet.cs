@@ -1,9 +1,12 @@
 using UnityEngine;
+using System.Collections;
 
 public class ProjectileBullet : MonoBehaviour
 {
     [SerializeField] private WeaponVisualData visualData;
+    [SerializeField] private float ignoreCollisionTime = 0.1f;
     private TrailRenderer trail;
+    private bool _canCollide = false;
 
     void Awake()
     {
@@ -15,20 +18,32 @@ public class ProjectileBullet : MonoBehaviour
             Debug.Log("[ProjectileBullet] TrailRenderer encontrado: " + trail.gameObject.name);
 
         if (trail != null && visualData != null)
-            {
-                if (visualData.trailMaterial != null)
-                    trail.material   = visualData.trailMaterial;
+        {
+            if (visualData.trailMaterial != null)
+                trail.material = visualData.trailMaterial;
 
-                trail.startColor = visualData.trailColor;
-                trail.endColor   = new Color(visualData.trailColor.r,
-                                            visualData.trailColor.g,
-                                            visualData.trailColor.b, 1f);
-                trail.time       = visualData.trailTime;
-            }
+            trail.startColor = visualData.trailColor;
+            trail.endColor   = new Color(visualData.trailColor.r,
+                                         visualData.trailColor.g,
+                                         visualData.trailColor.b, 1f);
+            trail.time       = visualData.trailTime;
+        }
+
+        StartCoroutine(EnableCollision());
+    }
+
+    IEnumerator EnableCollision()
+    {
+        var col = GetComponent<Collider>();
+        if (col != null) col.enabled = false;
+        yield return new WaitForSeconds(ignoreCollisionTime);
+        if (col != null) col.enabled = true;
+        _canCollide = true;
     }
 
     void OnCollisionEnter(Collision collision)
     {
+        if (!_canCollide) return;
         SpawnImpact(collision.contacts[0].point, collision.contacts[0].normal);
         Destroy(gameObject);
     }
@@ -43,13 +58,32 @@ public class ProjectileBullet : MonoBehaviour
         }
 
         var go = new GameObject("BulletImpact");
-        go.transform.position = point + normal * 0.05f;
+        float radius = (visualData != null) ? visualData.generateParticlesRadius : 0f;
+
+        Vector3 spawnPosition;
+
+        if (radius <= 0f)
+        {
+            // Impacto EXACTO (pistola)
+            spawnPosition = point + normal * 0.05f;
+        }
+        else
+        {
+            Vector3 randomOffset = Random.insideUnitSphere * radius;
+
+            // Evita que las partículas se metan dentro de la superficie
+            if (Vector3.Dot(randomOffset, normal) < 0)
+                randomOffset = -randomOffset;
+
+            spawnPosition = point + normal * 0.05f + randomOffset;
+        }
+
+        go.transform.position = spawnPosition;
         go.transform.rotation = Quaternion.LookRotation(normal);
 
         var ps  = go.AddComponent<ParticleSystem>();
         var psr = go.GetComponent<ParticleSystemRenderer>();
 
-        // --- Forma de la partícula ---
         if (visualData != null && visualData.use3DMesh)
         {
             psr.renderMode     = ParticleSystemRenderMode.Mesh;
@@ -62,8 +96,8 @@ public class ProjectileBullet : MonoBehaviour
         }
         else
         {
-            psr.renderMode          = ParticleSystemRenderMode.Billboard;
-            psr.material            = new Material(Shader.Find("Particles/Standard Unlit"));
+            psr.renderMode = ParticleSystemRenderMode.Billboard;
+            psr.material   = new Material(Shader.Find("Particles/Standard Unlit"));
             psr.material.SetFloat("_Mode", 2f);
             psr.material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
             psr.material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
@@ -75,7 +109,6 @@ public class ProjectileBullet : MonoBehaviour
                 psr.material.SetTexture("_MainTex", visualData.impactSprite.texture);
         }
 
-        // --- Configuración general ---
         var main           = ps.main;
         main.loop          = false;
         main.startLifetime = visualData != null ? visualData.impactLifetime : 0.4f;
@@ -90,7 +123,6 @@ public class ProjectileBullet : MonoBehaviour
             : new ParticleSystem.MinMaxGradient(Color.yellow, Color.red);
         main.maxParticles  = visualData != null ? visualData.impactParticleCount : 15;
 
-        // --- Rotación aleatoria para meshes 3D ---
         if (visualData != null && visualData.use3DMesh)
         {
             var rot          = ps.rotationOverLifetime;
@@ -101,7 +133,6 @@ public class ProjectileBullet : MonoBehaviour
             rot.z            = new ParticleSystem.MinMaxCurve(-180f, 180f);
         }
 
-        // --- Fade out suave ---
         if (visualData != null && visualData.impactFadeOut)
         {
             var colorOverLifetime     = ps.colorOverLifetime;
@@ -126,7 +157,6 @@ public class ProjectileBullet : MonoBehaviour
             colorOverLifetime.color = new ParticleSystem.MinMaxGradient(gradient);
         }
 
-        // --- Grows over time ---
         if (visualData != null && visualData.impactGrowsOverTime)
         {
             var sizeOverLifetime     = ps.sizeOverLifetime;
@@ -139,12 +169,10 @@ public class ProjectileBullet : MonoBehaviour
             sizeOverLifetime.size = new ParticleSystem.MinMaxCurve(1f, curve);
         }
 
-        // --- Emisión en burst ---
         var emission = ps.emission;
         emission.SetBursts(new[] { new ParticleSystem.Burst(0f, (short)(visualData != null ? visualData.impactParticleCount : 15)) });
         emission.rateOverTime = 0;
 
-        // --- Forma del cono alineado a la normal ---
         var shape            = ps.shape;
         shape.shapeType      = ParticleSystemShapeType.Cone;
         shape.angle          = 45f;

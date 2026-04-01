@@ -1,5 +1,6 @@
 using UnityEngine;
 
+public enum FireMode { Projectile, Raycast } // <-- fuera de la clase
 [CreateAssetMenu(fileName = "WeaponVisualData", menuName = "Weapons/Visual Data")]
 public class WeaponVisualData : ScriptableObject {
     [Header("Impact Particles")]
@@ -13,6 +14,8 @@ public class WeaponVisualData : ScriptableObject {
     public bool  impactGrowsOverTime = false;
     public float impactFinalSize    = 0.2f; // Tamaño final si grows está activo
     public int impactParticleCount = 15;
+    [Header("Impact Spawn")]
+    public float generateParticlesRadius = 0.1f; // Radio donde aparecen las partículas
 
     
     [Header("Impact Shape")]
@@ -20,10 +23,13 @@ public class WeaponVisualData : ScriptableObject {
     public Mesh impactMesh;               // Solo se usa si use3DMesh = true
     public Sprite impactSprite;           // Solo se usa si use3DMesh = false
 
+    [Header("Ray Visual")]
+    public float rayFadeDuration = 0.3f; // Duración del fade del rayo
+    public float rayWidth        = 0.02f; // Grosor del rayo
 
     [Header("Bullet")]
     public bool hasBulletDrop = false;    // La bala cae por gravedad
-    
+
     [Header("Recoil Animation")]
     public float recoilDistance = 0.05f;  // Cuanto retrocede
     public float recoilRotation = 5f;     // Cuanto rota hacia arriba
@@ -39,4 +45,10 @@ public class WeaponVisualData : ScriptableObject {
     public Material bulletMaterial; // Arrastra aquí el material de la bala
     public Material trailMaterial;  // Arrastra aquí el material del trail
     public Material impactMeshMaterial;  // Material de las partículas 3D
+
+
+    [Header("Fire Mode")]
+    public FireMode fireMode = FireMode.Projectile;
+    public float raycastRange = 100f;        // Distancia máxima del raycast
+    public LayerMask raycastMask = ~0;       // Qué layers detecta
 }
